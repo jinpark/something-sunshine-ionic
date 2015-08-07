@@ -1,0 +1,44 @@
+/* Empty. Add your own CSS if you like */
+
+ion-item a.item-content {
+    height: 100%;
+}
+
+ion-list .item {
+    border: 0;
+    height: 33vh;
+}
+
+.item-content div p {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    width: 100%;
+    color: white;
+    padding: 10px 0 10px 10px;
+}
+
+input[type=range]{
+    -webkit-appearance: none;
+    width: 100%;
+    height: 15px;
+    background: linear-gradient(to right, #a90329 0%,#8f0222 50%,#6d0019 100%);
+    border: none;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border: none;
+    height: 16px;
+    width: 0px;
+    background-color: #ffab40;
+}
+
+input[type=range]:focus {
+    outline: none;
+}
+
+.currentTime {
+    text-align: right;
+}

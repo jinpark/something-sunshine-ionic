@@ -1,0 +1,11 @@
+<ion-view view-title="Something Sunshine">
+  <ion-content>
+    <ion-list>
+      <ion-item ng-repeat="episode in episodes" ui-sref="app.episode({episodeId: episode.pk})" back-img="{{episode.fields.thumbnail}}">
+       <div>
+           <p>{{episode.fields.title}}</p>
+       </div> 
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
