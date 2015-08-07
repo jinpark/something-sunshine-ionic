@@ -9,7 +9,7 @@ ion-list .item {
     height: 33vh;
 }
 
-.item-content div p {
+.item-content div p.title {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -17,6 +17,16 @@ ion-list .item {
     width: 100%;
     color: white;
     padding: 10px 0 10px 10px;
+    margin: 0;
+}
+
+.item-content div p.number {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    color: white;
+    padding: 10px 10px 10px 0px;
+    margin: 0;
 }
 
 input[type=range]{
@@ -41,4 +51,12 @@ input[type=range]:focus {
 
 .currentTime {
     text-align: right;
+}
+
+.episode-image {
+    max-width: 100%;
+}
+
+.list.episode.card .item p {
+    white-space: normal;
 }
