@@ -16,7 +16,8 @@
       </div>
 
       <div class="item item-icon-left">
-      <i class="icon" ng-class="audio.paused ? 'ion-play' : 'ion-pause'" ng-click='audio.paused ? audio.play() : audio.pause()'></i>
+      <ion-spinner class="icon" ng-hide="!waiting"></ion-spinner>
+      <i class="icon" ng-hide="waiting" ng-class="audio.paused ? 'ion-play' : 'ion-pause'" ng-click='audio.paused ? audio.play() : audio.pause()'></i>
       <seekbar ng-model="audio.progress"></seekbar>
     </div>
 
