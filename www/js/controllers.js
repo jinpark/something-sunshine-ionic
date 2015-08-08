@@ -35,7 +35,7 @@ angular.module('starter.controllers', ['ngAudio'])
         }, function(){
             $scope.loading = false;
             $ionicLoading.show({template: 'Something went wrong...', duration: 2000});
-        })
+        });
         $scope.playAudio = function(){
             if ($scope.audio.paused) {
                 $scope.played = true;
@@ -70,30 +70,29 @@ angular.module('starter.controllers', ['ngAudio'])
     };
 })
 .directive('seekbar', function($window){
-        var template = '<input class="form-control seekbar" type="range" min=0 max=1 step=0.01 value=0>'
-        var getTrackStyle = function (el, value) {
-                var curVal = value || 0,
-                    style = {},
-                    cssOutput = 'linear-gradient(to right, #ffab40 0%, #ffab40 ' + curVal * 100 + '%, #ddd ' + curVal * 100 + '%, #ddd 100%)';
-                style['background'] = cssOutput;
-                return style;
-        };
-
-                var prefs = ['webkit-slider-runnable-track', 'moz-range-track', 'ms-track'];
-                return {
-                        restrict: 'E',
-                        template: template,
-                        require: 'ngModel',
-                        scope: {
-                            model: '=ngModel'
-                        },
-                        replace: true,
-                        link: function(scope, element, attrs, ngModel) {
-                                scope.$watch("model", function(oldVal, newVal){
-                                        var css = getTrackStyle(element, newVal);
-                                        element.css(css);
-                                })
-                        }
-                };
+    var template = '<input class="form-control seekbar" type="range" min=0 max=1 step=0.01 value=0>'
+    var getTrackStyle = function (el, value) {
+        var curVal = value || 0,
+            style = {},
+            cssOutput = 'linear-gradient(to right, #ffab40 0%, #ffab40 ' + curVal * 100 + '%, #ddd ' + curVal * 100 + '%, #ddd 100%)';
+        style['background'] = cssOutput;
+        return style;
+    };
+    var prefs = ['webkit-slider-runnable-track', 'moz-range-track', 'ms-track'];
+    return {
+        restrict: 'E',
+        template: template,
+        require: 'ngModel',
+        scope: {
+            model: '=ngModel'
+        },
+        replace: true,
+        link: function(scope, element, attrs, ngModel) {
+            scope.$watch("model", function(oldVal, newVal){
+                var css = getTrackStyle(element, newVal);
+                element.css(css);
+            })
+        }
+    };
 });
 
