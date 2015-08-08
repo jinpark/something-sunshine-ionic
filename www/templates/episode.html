@@ -16,10 +16,10 @@
       </div>
 
       <div class="item item-icon-left">
-      <ion-spinner class="icon ng-hide" ng-show="waiting && played"></ion-spinner>
-      <i class="icon" ng-hide="waiting && played" ng-class="audio.paused ? 'ion-play' : 'ion-pause'" ng-click="playAudio()"></i>
-      <seekbar ng-model="audio.progress"></seekbar>
-    </div>
+        <ion-spinner class="icon ng-hide" ng-show="(waiting || seeking) && played"></ion-spinner>
+        <i class="icon" ng-hide="(waiting || seeking) && played" ng-class="audio.paused ? 'ion-play' : 'ion-pause'" ng-click="playAudio()"></i>
+        <seekbar on-tap="onTap($event)" ng-model="audio.progress"></seekbar>
+      </div>
 
     </div>
     

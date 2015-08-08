@@ -27,11 +27,17 @@ angular.module('starter.controllers', ['ngAudio'])
         $ionicLoading.show({template: 'Loading'});
         $scope.loading = true;
         $scope.played = false;
+        $scope.seeking = false;
         $http.get('http://www.somethingsunshine.com/api/episode/' + $stateParams.episodeId).then(function(data){
             $ionicLoading.hide();
             $scope.loading = false;
             $scope.episode = data.data[0];
             $scope.audio = ngAudio.load($scope.episode.fields.audio_file_path);
+            $scope.onTap = function(e) {
+              if(ionic.Platform.isIOS()) {
+                $scope.audio.progress = (e.target.max / e.target.offsetWidth)*(e.gesture.touches[0].pageX - e.target.offsetLeft);
+              }
+            };
         }, function(){
             $scope.loading = false;
             $ionicLoading.show({template: 'Something went wrong...', duration: 2000});
@@ -39,11 +45,21 @@ angular.module('starter.controllers', ['ngAudio'])
         $scope.playAudio = function(){
             if ($scope.audio.paused) {
                 $scope.played = true;
-               $scope.audio.play();
+                $scope.audio.play();
             } else {
                 $scope.audio.pause();
             }
         };
+        $scope.$watch('audio.paused', function(newVal, oldVal){
+            console.log(['audio.paused', newVal]);
+        });
+        $scope.$watch('audio.audio.seeking', function(newVal, oldVal){
+            if (newVal){
+                $scope.seeking = true;
+            } else {
+                $scope.seeking = false;
+            }
+        });
         $scope.$watch('audio.audio.readyState', function(newVal, oldVal){
                 console.log(['watching', newVal, oldVal]);
                 if (newVal !== 4) {
