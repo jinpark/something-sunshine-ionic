@@ -11,8 +11,8 @@
       </div>
 
       <div class="item item-image">
-        <ion-spinner ng-hide="!loading" class="padding-vertical"></ion-spinner>
-        <img ng-hide="loading" class="episode-image" src="{{ episode.fields.thumbnail }}">
+        <ion-spinner ng-show="loading" class="padding-vertical"></ion-spinner>
+        <img ng-show="!loading" class="ng-hide episode-image" src="{{ episode.fields.thumbnail }}">
       </div>
 
       <div class="item item-icon-left">

@@ -35,7 +35,8 @@ angular.module('starter.controllers', ['ngAudio'])
             $scope.audio = ngAudio.load($scope.episode.fields.audio_file_path);
             $scope.onTap = function(e) {
               if(ionic.Platform.isIOS()) {
-                $scope.audio.progress = (e.target.max / e.target.offsetWidth)*(e.gesture.touches[0].pageX - e.target.offsetLeft);
+                $scope.audio.pause();
+                $scope.audio.progress = (e.target.max / e.target.offsetWidth)*(e.gesture.touches[0].clientX - 10 - e.target.offsetLeft);
               }
             };
         }, function(){
@@ -54,18 +55,23 @@ angular.module('starter.controllers', ['ngAudio'])
             console.log(['audio.paused', newVal]);
         });
         $scope.$watch('audio.audio.seeking', function(newVal, oldVal){
+            console.log(['seeking', newVal, oldVal]);
             if (newVal){
                 $scope.seeking = true;
+                $scope.audio.pause();
+            } else if (!newVal && !$scope.played) {
+                $scope.seeking = false;
             } else {
                 $scope.seeking = false;
+                $scope.audio.play();
             }
         });
         $scope.$watch('audio.audio.readyState', function(newVal, oldVal){
                 console.log(['watching', newVal, oldVal]);
-                if (newVal !== 4) {
-                    $scope.waiting = true;
-                } else {
+                if (newVal == 4 || newVal == 3) {
                     $scope.waiting = false;
+                } else {
+                    $scope.waiting = true;
                 }
         });
         $scope.$on('$ionicView.leave', function(){
