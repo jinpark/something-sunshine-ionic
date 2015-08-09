@@ -58,7 +58,6 @@ angular.module('starter.controllers', ['ngAudio'])
             console.log(['seeking', newVal, oldVal]);
             if (newVal){
                 $scope.seeking = true;
-                $scope.audio.pause();
             } else if (!newVal && !$scope.played) {
                 $scope.seeking = false;
             } else {
